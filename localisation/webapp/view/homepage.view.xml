@@ -1,0 +1,44 @@
+<mvc:View controllerName="localisation.controller.homepage"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+	<content>
+	 
+       <VBox
+    justifyContent="Center"
+    alignItems="Center"
+    width="100%"
+    height="100vh" 
+    class="tileContainer">
+
+    
+    <HBox justifyContent="Center" alignItems="Center" class="tileRow">
+        <!-- First row of tiles -->
+        <GenericTile class="sapUiTinyMargin tileLayout tileBlue" header="Scope Assessment"
+            press="pressSA" frameType="TwoByHalf">
+            <TileContent />
+        </GenericTile>
+
+        <GenericTile class="sapUiTinyMargin tileLayout tilePink" header="Register Missing Scope"
+            press="pressRMS" frameType="TwoByHalf">
+            <TileContent />
+        </GenericTile>
+    </HBox>
+
+    <HBox justifyContent="Center" alignItems="Center" class="tileRow">
+        <!-- Second row of tiles -->
+        <GenericTile  class="sapUiTinyMargin tileLayout tileOrange" header="CLT Opportunity Nomination"
+            press="press" frameType="TwoByHalf">
+            <TileContent />
+        </GenericTile>
+
+        <GenericTile class="sapUiTinyMargin tileLayout tileGreen" header="Analytical Overview"
+            press="press" frameType="TwoByHalf">
+            <TileContent />
+        </GenericTile>
+    </HBox>
+</VBox>
+
+        </content>
+    </Page>
+</mvc:View>

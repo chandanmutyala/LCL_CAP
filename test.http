@@ -1,0 +1,37 @@
+###
+POST http://localhost:4004/odata/v4/localisation/MissingScopeItems
+Content-Type: application/json
+ 
+ [
+  {
+    "customerOrProspect": "Prospect",
+    "customerName": "ABC Corp",
+    "oppurtunityNumber": "123456",
+    "priority": "High",
+    "goLiveDate": "2024-09-30",
+    "revenue": "1000000",
+    "country": "USA",
+    "industry": "Technology",
+    "ScopeItemID": "SI001",
+    "Description": "Scope item description for ABC Corp",
+    "LOB": "Sales",
+    "BusinessArea": "Consulting"
+  },
+  {
+    "customerOrProspect": "Customer",
+    "customerName": "XYZ Ltd",
+    "oppurtunityNumber": "654321",
+    "priority": "Medium",
+    "goLiveDate": "2024-12-15",
+    "revenue": "750000",
+    "country": "Germany",
+    "industry": "Manufacturing",
+    "ScopeItemID": "SI002",
+    "Description": "Scope item description for XYZ Ltd",
+    "LOB": "Services",
+    "BusinessArea": "Support"
+  }
+]
+
+###
+GET http://localhost:4004/odata/v4/localisation/MissingScopeItems

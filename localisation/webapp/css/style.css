@@ -1,0 +1,121 @@
+.tileHeading {
+    text-align: center;
+    font-size: 24px; /* Adjust font size */
+    font-weight: bold;
+    margin-bottom: 20px; /* Space between heading and tiles */
+    color: black; /* Change color as needed */
+}
+
+.tileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.tileLayout {
+    border-radius: 0px;   
+}
+
+.tileBlue {
+    background-color: #005a9e; /* Blue */
+    color: white;
+}
+
+.tilePink {
+    background-color: #ff1493; /* Pink */
+    color: white;
+}
+
+.tileOrange {
+    background-color: #b34700; /* Orange */
+    color: white;
+}
+
+.sapMTextMaxLine {
+    color: white;
+    font-size: x-large;
+    text-align: center;
+}
+
+.tileGreen {
+    background-color: #228B22; 
+    color: white;
+}
+
+.tileRow {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+/* Media Query for smaller screens from 320px to 770px */
+@media (max-width: 770px) {
+    .tileRow {
+        flex-direction: column; /* Stack tiles vertically */
+        width: 100%;
+        align-items: center;
+    }
+
+    .tileLayout {
+        width: 90%; /* Adjust tile width for smaller screens */
+        margin-bottom: 15px;
+        border-radius: 0px;
+
+    }
+}
+
+/* CSS to make the table container scrollable horizontally */
+.table-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    width: 100%; /* Ensure the container takes up the full width of its parent */
+    white-space: nowrap; /* Prevent line break within the container */
+}
+
+.table {
+    min-width: 100%; /* Ensure the table's width is at least 100% of its container */
+}
+
+.tableclass{
+    height : 80% !important;
+}
+
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.box{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.button{
+  padding: 10px !important;
+  font-size: 20px !important;
+  width: 100px !important;
+  height: 60px !important;
+}
+ 
+.newButton{
+  padding: 10px !important;
+  font-size: 20px !important;
+  width: 100px !important;
+  height: 60px !important;
+  float: right;
+  margin-right: 10px; 
+}
+
+
+
+.titleRegister{
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+
+.saverms{
+    float: right;
+    margin-right: 10px; 
+}

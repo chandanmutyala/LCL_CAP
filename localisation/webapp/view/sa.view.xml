@@ -1,0 +1,692 @@
+<mvc:View
+    controllerName="localisation.controller.sa"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:m="sap.m"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+    xmlns:tnt="sap.tnt"
+    height="100%"
+    xmlns:mdc="sap/ui/mdc"
+
+>
+    <m:Page
+        showHeader="false"
+        enableScrolling="false"
+        class="sapUiContentPadding"
+
+    >
+
+    	<tnt:ToolHeader id="shellLikeToolHeaderOnlyMandatoryControls" >
+			
+			<m:Title text="Scope Assessment" wrapping="false">
+				<m:layoutData>
+					<m:OverflowToolbarLayoutData priority="Disappear"/>
+				</m:layoutData>
+			</m:Title>
+			
+			
+		</tnt:ToolHeader>
+      
+        <m:content>
+            <!-- <m:Label text="Select Country" labelFor="select1"/>
+			 <m:Select id="select1" width="100%" items="{selectionmodel>/selectionitems}" selectedKey="MultiToggle" change="onSelectionModeChange">
+				<c:Item key="{selectionmodel>key}" text="{selectionmodel>text}"/>
+			</m:Select> -->
+            <m:Panel >
+            <m:MultiComboBox
+			id="scopeIdComboBox"
+                selectionChange="onComboBoxSelectionChange"
+                placeholder="Select Scope ID"
+                width="300px"
+			items="{
+				path: '/ScopeItems',
+				sorter: { path: 'ScopeItemID' }
+			}">
+			<c:Item key="{ScopeItemID}" text="{ScopeItemID}"/>
+		</m:MultiComboBox>
+         <m:MultiComboBox
+			id="descriptionComboBox"
+                selectionChange="onComboBoxSelectionChange"
+                placeholder="Select Scope Description"
+                width="300px"
+			items="{
+				path: '/ScopeItems',
+				sorter: { path: 'Description' }
+			}">
+			<c:Item key="{Description}" text="{Description}"/>
+		</m:MultiComboBox>
+           
+            <m:MultiComboBox
+                id="lobComboBox"
+                selectionChange="onComboBoxSelectionChange"
+                placeholder="Select LOB"
+                width="300px"
+            />
+            <m:MultiComboBox
+                id="businessAreaComboBox"
+                selectionChange="onComboBoxSelectionChange"
+                placeholder="Select Business Area"
+                width="300px"
+            />
+            <m:MultiComboBox
+                id="statusComboBox"
+                selectionChange="onComboBoxSelectionChange"
+                placeholder="Select Status"
+                width="300px"
+            />
+            <m:MultiComboBox
+                id="countryComboBox"
+                selectionChange="onCountrySelectionChange"
+                placeholder="Select Countries"
+                width="300px"
+            />
+            </m:Panel>
+
+            <Table
+                class="tableclass"
+                id="scopeItemsTable"
+                
+                rows="{/ScopeItems}"
+                selectionMode="MultiToggle"
+                ariaLabelledBy="title"
+                rowActionCount = "20"                
+            >
+            
+                <extension>
+                    <m:OverflowToolbar style="Clear">
+                        <m:Title
+                            id="title"
+                            text="Scope Items"
+                        />
+                    </m:OverflowToolbar>
+                </extension>
+            <rowMode>
+<rowmodes:Fixed rowCount="15"/>
+</rowMode>
+         
+                <columns>
+                    <Column width="11rem">
+                        <m:Label text="Scope Item ID" />
+                        <template>
+                            <m:Text
+                                text="{ScopeItemID}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="15rem">
+                        <m:Label text="Description" />
+                        <template>
+                            <m:Text
+                                text="{Description}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="11rem">
+                        <m:Label text="Line of Business" />
+                        <template>
+                            <m:Text
+                                text="{LOB}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="11rem">
+                        <m:Label text="Business Area" />
+                        <template>
+                            <m:Text
+                                text="{BusinessArea}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="9rem">
+                        <m:Label text="Status" />
+                        <template>
+                            <m:ObjectStatus text="{Status}" />
+                        </template>
+                    </Column>
+
+                    <!-- Country columns -->
+                    <Column width="8rem">
+                        <m:Label text="AE" />
+                        <template>
+                            <m:Text
+                                text="{AE}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="AR" />
+                        <template>
+                            <m:Text
+                                text="{AR}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="AT" />
+                        <template>
+                            <m:Text
+                                text="{AT}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="AU" />
+                        <template>
+                            <m:Text
+                                text="{AU}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="BE" />
+                        <template>
+                            <m:Text
+                                text="{BE}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="BG" />
+                        <template>
+                            <m:Text
+                                text="{BG}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="BR" />
+                        <template>
+                            <m:Text
+                                text="{BR}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="CA" />
+                        <template>
+                            <m:Text
+                                text="{CA}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="CH" />
+                        <template>
+                            <m:Text
+                                text="{CH}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="CL" />
+                        <template>
+                            <m:Text
+                                text="{CL}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="CN" />
+                        <template>
+                            <m:Text
+                                text="{CN}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="CO" />
+                        <template>
+                            <m:Text
+                                text="{CO}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="CZ" />
+                        <template>
+                            <m:Text
+                                text="{CZ}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="DE" />
+                        <template>
+                            <m:Text
+                                text="{DE}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="DK" />
+                        <template>
+                            <m:Text
+                                text="{DK}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="EG" />
+                        <template>
+                            <m:Text
+                                text="{EG}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="ES" />
+                        <template>
+                            <m:Text
+                                text="{ES}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="FI" />
+                        <template>
+                            <m:Text
+                                text="{FI}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="FR" />
+                        <template>
+                            <m:Text
+                                text="{FR}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="GB" />
+                        <template>
+                            <m:Text
+                                text="{GB}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="GR" />
+                        <template>
+                            <m:Text
+                                text="{GR}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="HK" />
+                        <template>
+                            <m:Text
+                                text="{HK}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="HR" />
+                        <template>
+                            <m:Text
+                                text="{HR}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="HU" />
+                        <template>
+                            <m:Text
+                                text="{HU}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="ID" />
+                        <template>
+                            <m:Text
+                                text="{ID}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="IE" />
+                        <template>
+                            <m:Text
+                                text="{IE}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="IL" />
+                        <template>
+                            <m:Text
+                                text="{IL}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="IND" />
+                        <template>
+                            <m:Text
+                                text="{IND}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="IT" />
+                        <template>
+                            <m:Text
+                                text="{IT}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="JP" />
+                        <template>
+                            <m:Text
+                                text="{JP}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="KR" />
+                        <template>
+                            <m:Text
+                                text="{KR}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="KW" />
+                        <template>
+                            <m:Text
+                                text="{KW}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="KZ" />
+                        <template>
+                            <m:Text
+                                text="{KZ}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="LU" />
+                        <template>
+                            <m:Text
+                                text="{LU}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="MX" />
+                        <template>
+                            <m:Text
+                                text="{MX}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="MY" />
+                        <template>
+                            <m:Text
+                                text="{MY}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="NL" />
+                        <template>
+                            <m:Text
+                                text="{NL}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="NR" />
+                        <template>
+                            <m:Text
+                                text="{NR}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="NZ" />
+                        <template>
+                            <m:Text
+                                text="{NZ}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="OM" />
+                        <template>
+                            <m:Text
+                                text="{OM}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="PE" />
+                        <template>
+                            <m:Text
+                                text="{PE}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="PH" />
+                        <template>
+                            <m:Text
+                                text="{PH}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="PL" />
+                        <template>
+                            <m:Text
+                                text="{PL}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="PT" />
+                        <template>
+                            <m:Text
+                                text="{PT}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="QA" />
+                        <template>
+                            <m:Text
+                                text="{QA}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="RO" />
+                        <template>
+                            <m:Text
+                                text="{RO}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="RS" />
+                        <template>
+                            <m:Text
+                                text="{RS}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="RU" />
+                        <template>
+                            <m:Text
+                                text="{RU}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="SA" />
+                        <template>
+                            <m:Text
+                                text="{SA}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="SE" />
+                        <template>
+                            <m:Text
+                                text="{SE}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="SG" />
+                        <template>
+                            <m:Text
+                                text="{SG}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="TH" />
+                        <template>
+                            <m:Text
+                                text="{TH}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="TR" />
+                        <template>
+                            <m:Text
+                                text="{TR}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="TW" />
+                        <template>
+                            <m:Text
+                                text="{TW}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="UA" />
+                        <template>
+                            <m:Text
+                                text="{UA}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="US" />
+                        <template>
+                            <m:Text
+                                text="{US}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column width="8rem">
+                        <m:Label text="ZA" />
+                        <template>
+                            <m:Text
+                                text="{ZA}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column width="8rem">
+                        <m:Label text="Non-Localised" />
+                        <template>
+                            <m:Text
+                                text="{Non_Localised}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                </columns>
+            </Table>
+            
+        </m:content>
+        <m:footer>
+        	
+			<m:Toolbar>
+				<m:ToolbarSpacer/>
+				<m:Button type="Emphasized" text="Export to Excel" press="onPress" />
+				
+			</m:Toolbar>
+		
+        </m:footer>
+    </m:Page>
+</mvc:View>

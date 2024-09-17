@@ -1,0 +1,150 @@
+<mvc:View
+    controllerName="localisation.controller.rms"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+>
+    <Page>
+        <content>
+            <HBox class="header">
+                <Text
+                    text="Register Missing Scopes"
+                    class="titleRegister"
+                />
+                <ToolbarSpacer />
+                <Button
+                    class="newButton"
+                    type="Emphasized"
+                    text="NEW"
+                    press="onNewPress"
+                />
+            </HBox>
+
+            <ToolbarSpacer />
+        </content>
+
+        <Table
+            id="idProductsTable"
+            inset="false"
+            growing="true"
+            
+            growingScrollToLoad="true"
+            items="{
+            path: '/MissingScopeItems'
+            
+        }"
+        >
+            <columns>
+                <Column width="12em">
+                    <Text text="Registered ID" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                >
+                    <Text text="Oppertunity #" />
+                </Column>
+                <Column
+                    minScreenWidth="Desktop"
+                    demandPopin="true"
+                    hAlign="End"
+                >
+                    <Text text="Customer" />
+                </Column>
+                <Column
+                    minScreenWidth="Desktop"
+                    demandPopin="true"
+                    hAlign="Center"
+                >
+                    <Text text="Brand Guardian Status" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="Global Services Status" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="Scope ID" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="Scope Description" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="Priority" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="Country" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="Created By" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="Created On" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem vAlign="Middle">
+                    <cells>
+                        <ObjectIdentifier title="{autoId}" />
+                        <Text text="{oppurtunityNumber}" />
+                        <Text text="{customerName}" />
+                        <!-- ComboBox for brandGuardianStatus -->
+                        <!-- ComboBox for brandGuardianStatus -->
+                        <ComboBox
+                            id="brand"
+                            selectedKey="{brandGuardianStatus}"
+                              change="onBrandComboBoxChange"
+                        >
+                            <core:Item
+                                key="Approved"
+                                text="Approved"
+                            />
+                            <core:Item
+                                key="In Progress"
+                                text="In Progress"
+                            />
+                            <core:Item
+                                key="Rejected"
+                                text="Rejected"
+                            />
+                        </ComboBox>
+                        <!-- ComboBox for globalServicesStatus -->
+                        <ComboBox
+                            id="global"
+                            selectedKey="{globalServicesStatus}"
+                           
+                             change="onGlobalComboBoxChange"
+                        >
+                            <core:Item
+                                key="Approved"
+                                text="Approved"
+                            />
+                            <core:Item
+                                key="In Evaluation"
+                                text="In Evaluation"
+                            />
+                            <core:Item
+                                key="Rejected"
+                                text="Rejected"
+                            />
+                        </ComboBox>
+
+                        <Text text="{ScopeItemID}" />
+                        <Text text="{Description}" />
+                        <Text text="{priority}" />
+                        <Text text="{country}" />
+                        <Text text="{createdBy}" />
+                        <Text text="{createdOn}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+
+        <Button
+            type="Emphasized"
+            text="Save"
+            class="saverms"
+            press="onSavePress"
+        />
+    </Page>
+</mvc:View>

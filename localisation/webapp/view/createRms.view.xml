@@ -1,0 +1,243 @@
+
+<!-- 
+<mvc:View controllerName="localisation.controller.createRms"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="createRms" title="{i18n>title}">
+	<content>
+    	
+			<Toolbar>
+				
+				<ToolbarSpacer/>
+				<Title text="Create Missing Scope" level="H2"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+
+		
+   
+        </content>
+    </Page>
+</mvc:View> -->
+
+
+
+<mvc:View
+    controllerName="localisation.controller.createRms"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page>
+        <content>
+            <HBox class="header">
+                <Text
+                    text="Register Missing Scope"
+                    class="titleRegister"
+                />
+                <ToolbarSpacer />
+                <Button class="button"
+                type="Emphasized"
+                    text="Save"
+                    press="onSavePress"
+                />
+            </HBox>
+      <Panel>
+    <VBox class="sapUiSmallMargin">
+        <f:Form id="Form1" editable="true">
+            <f:title>
+                <core:Title text="Step 1: Customer Information" />
+            </f:title>
+            <f:layout>
+                <f:ResponsiveGridLayout
+                    labelSpanXL="4"    
+                    labelSpanL="4"
+                    labelSpanM="12"
+                    labelSpanS="12"    
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="0"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"      
+                    columnsL="2"        
+                    columnsM="1"        
+                    singleContainerFullSize="false" />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="">
+                            <f:fields>
+                                <CheckBox id="customerId" text="Customer"  />
+                                <CheckBox id="prospectId" text="Prospect" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Customer Name">
+                            <f:fields>
+                                <Input width="100%" value="{SupplierName}" id="customerName" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Opportunity Number">
+                            <f:fields>
+                                <Input width="100%" value="{OpportunityNumber}" id="opportunityNumber" />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="Priority">
+                            <f:fields>
+                                <ComboBox id="priorityComboBox" width="100%" selectedKey="Medium">
+                                    <core:Item key="High" text="High" />
+                                    <core:Item key="Medium" text="Medium" />
+                                    <core:Item key="Low" text="Low" />
+                                </ComboBox>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Estimated Go-Live Date">
+                            <f:fields>
+                               <Input  width="100%" value="{Revenue}" id="goLiveDate" placeholder="eg : yyyy-mm-dd" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Revenue €">
+                            <f:fields>
+                                <Input width="100%" value="{Revenue}" id="revenue" />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+    </VBox>
+</Panel>
+ 
+<Panel>
+    <VBox class="sapUiSmallMargin">
+        <f:Form id="FormChange480cx_12120" editable="true">
+            <f:title>
+                <core:Title text="Step 2: Country and Industry" />
+            </f:title>
+            <f:layout>
+                <f:ResponsiveGridLayout
+                    labelSpanXL="4"
+                    labelSpanL="4"
+                    labelSpanM="12"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="0"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="1"
+                    singleContainerFullSize="false" />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="Country">
+                            <f:fields>
+                                <MultiComboBox id="countryBox" width="100%" items="{path: 'countryModel>/countries'}">
+                                    <core:Item key="{countryModel>code}" text="{countryModel>code}" />
+                                </MultiComboBox>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Industry">
+                            <f:fields>
+                                <MultiComboBox id="industrybox" width="100%" items="{path: 'countryModel>/industries'}">
+                                    <core:Item key="{countryModel>name}" text="{countryModel>name}" />
+                                </MultiComboBox>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+    </VBox>
+</Panel>
+ 
+            <Panel>
+                <VBox class="sapUiSmallMargin">
+                <m:MultiComboBox
+			id="scopeIdComboBoxTable"
+                selectionChange="onComboBoxSelectionChange"
+                placeholder="Select Scope ID"
+                width="300px"
+			items="{
+				path: '/ScopeItems',
+				sorter: { path: 'ScopeItemID' }
+			}">
+			<c:Item key="{ScopeItemID}" text="{ScopeItemID}"/>
+		   </m:MultiComboBox>
+                    <Table
+                        id="idProductsTaable"
+                        inset="false"
+                        mode="MultiSelect"
+                        
+                        items="{
+            path: '/ScopeItems'
+             
+        }"
+        
+       
+                    >
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <Title
+                                    text="step 3 : Scope Selection"
+                                    level="H2"
+                                />
+                                <ToolbarSpacer />
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column width="12em">
+                                <Text text="Scope ID" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                            >
+                                <Text text="Scope Description" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="End"
+                            >
+                                <Text text="LoB" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="End"
+                            >
+                                <Text text="Business Area" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem vAlign="Middle">
+                                <cells>
+                                    <ObjectIdentifier
+                                        title="{ScopeItemID}"
+                                        
+                                    />
+                                    <Text text="{Description}" />
+									 <Text text="{LOB}" />
+									  <Text text="{BusinessArea}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </VBox>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>
+ 
