@@ -139,10 +139,65 @@ module.exports = cds.service.impl(async function () {
 //   });
   
 
+// this.on('CREATE', 'MissingScopeItems', async (req) => {
+//     try {
+//         const items = req.data; // Directly receive the payload
+        
+//         // Fetch the max autoId to increment for the new entry
+//         const autoIdResult = await this.run(SELECT.one.from(MissingScopeItems).columns('max(autoId) as maxID'));
+        
+//         // Starting point for the autoId (adjust the value as per your need)
+//         const startingID = 100;
+//         let currentMaxID = autoIdResult.maxID >= startingID ? autoIdResult.maxID : startingID - 1;
+        
+//         // Loop through all the items sent in the payload and insert them one by one
+//         const insertPromises = items.map(async (item) => {
+//             const newID = ++currentMaxID; // Increment the ID for each new record
+
+//             const newScopeItem = {
+//                 autoId: newID,
+//                 customerOrProspect: item.customerOrProspect,
+//                 customerName: item.customerName,
+//                 brandGuardianStatus: 'In Progress',
+//                 globalServicesStatus: 'In Evaluation',
+//                 oppurtunityNumber: item.oppurtunityNumber,
+//                 priority: item.priority,
+//                 goLiveDate: item.goLiveDate,
+//                 revenue: item.revenue,
+//                 country: item.country,
+//                 industry: item.industry,
+//                 ScopeItemID: item.ScopeItemID,
+//                 Description: item.Description,
+//                 LOB: item.LOB,
+//                 BusinessArea: item.BusinessArea,
+//                 createdBy: 'Nywald',
+//                 createdOn: new Date(),
+//             };
+
+//             // Insert the new entry into the MissingScopeItems table
+//             return this.run(INSERT.into(MissingScopeItems).entries(newScopeItem));
+//         });
+
+//         // Wait for all insert operations to complete
+//         await Promise.all(insertPromises);
+
+//         // Return a proper response (you could return created entities or simply null)
+//         return null; // Indicating successful creation without returning a message string
+//     } catch (error) {
+//         // Handle any errors during the insert operation
+//         req.error(500, `Error creating MissingScopeItems: ${error.message}`);
+//     }
+// });
+
 this.on('CREATE', 'MissingScopeItems', async (req) => {
     try {
-        const items = req.data; // Directly receive the payload
-        
+        let items = req.data;
+
+        // Ensure items is an array, even if a single record is sent
+        if (!Array.isArray(items)) {
+            items = [items]; // Convert single object to an array with one element
+        }
+
         // Fetch the max autoId to increment for the new entry
         const autoIdResult = await this.run(SELECT.one.from(MissingScopeItems).columns('max(autoId) as maxID'));
         
@@ -188,6 +243,7 @@ this.on('CREATE', 'MissingScopeItems', async (req) => {
         req.error(500, `Error creating MissingScopeItems: ${error.message}`);
     }
 });
+
 
    
 

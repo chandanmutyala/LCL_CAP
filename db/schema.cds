@@ -103,3 +103,15 @@ entity DropdownValues {
     key name: String;
     Text: String;
 }
+entity LOB{
+  key name:String;
+}
+entity BusinessArea{
+  key name:String
+}
+
+
+entity countries {
+  key code : String;
+    name:String;
+}
