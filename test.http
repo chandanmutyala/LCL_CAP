@@ -55,4 +55,161 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:4004/odata/v4/localisation/getUniqueValues(column='LOB')
+Content-Type: application/json
+
+{
+  "column": "LOB"
+}
+###
+GET http://localhost:4004/odata/v4/localisation/getUniqueScopeItems
+###
 GET http://localhost:4004/odata/v4/localisation/MissingScopeItems
+
+
+###
+GET http://localhost:4004/odata/v4/localisation/ScopeItems
+
+###
+POST http://localhost:4004/odata/v4/localisation/resetAndInsertScopeItems
+Content-Type: application/json
+
+{
+    "items": 
+[
+    {
+        "ScopeItemID": "CY1",
+        "Description": "C AND Y DES",
+        "LOB": "Application Platform and Infrastructure",
+        "BusinessArea": "Process Management and Integration",
+        "Status": "Available",
+        "AE": "Released",
+        "AR": "Released",
+        "AT": "Released",
+        "AU": "Released",
+        "BE": "Released",
+        "BG": "Released",
+        "BR": "Released",
+        "CA": "Released",
+        "CH": "Released",
+        "CL": "Released",
+        "CN": "Released",
+        "CO": "Released",
+        "CZ": "Released",
+        "DE": "Released",
+        "DK": "Released",
+        "EG": "Released",
+        "ES": "Released",
+        "FI": "Released",
+        "FR": "Released",
+        "GB": "Released",
+        "GR": "Released",
+        "HK": "Released",
+        "HR": "Released",
+        "HU": "Released",
+        "ID": "Released",
+        "IE": "Released",
+        "IL": "Released",
+        "IND": "Released",
+        "IT": "Released",
+        "JP": "Released",
+        "KR": "Released",
+        "KW": "Released",
+        "KZ": "Released",
+        "LU": "Released",
+        "MX": "Released",
+        "MY": "Released",
+        "NL": "Released",
+        "NR": "Released",
+        "NZ": "Released",
+        "OM": "Released",
+        "PE": "Released",
+        "PH": "Released",
+        "PL": "Released",
+        "PT": "Released",
+        "QA": "Released",
+        "RO": "Released",
+        "RS": "Released",
+        "RU": "Released",
+        "SA": "Released",
+        "SE": "Released",
+        "SG": "Released",
+        "SI": "Released",
+        "SK": "Released",
+        "TH": "Released",
+        "TR": "Released",
+        "TW": "Released",
+        "UA": "Released",
+        "US": "Released",
+        "ZA": "Released",
+        "Non_Localised": "Released"
+    },
+    {
+        "ScopeItemID": "CY1",
+        "Description": "C AND Y TWO  DES",
+        "LOB": "Application Platform and Infrastructure",
+        "BusinessArea": "Process Management and Integration",
+        "Status": "Available",
+        "AE": "Released",
+        "AR": "Released",
+        "AT": "Released",
+        "AU": "Released",
+        "BE": "Released",
+        "BG": "Released",
+        "BR": "Released",
+        "CA": "Released",
+        "CH": "Released",
+        "CL": "Released",
+        "CN": "Released",
+        "CO": "Released",
+        "CZ": "Released",
+        "DE": "Released",
+        "DK": "Released",
+        "EG": "Released",
+        "ES": "Released",
+        "FI": "Released",
+        "FR": "Released",
+        "GB": "Released",
+        "GR": "Released",
+        "HK": "Released",
+        "HR": "Released",
+        "HU": "Released",
+        "ID": "Released",
+        "IE": "Released",
+        "IL": "Released",
+        "IND": "Released",
+        "IT": "Released",
+        "JP": "Released",
+        "KR": "Released",
+        "KW": "Released",
+        "KZ": "Released",
+        "LU": "Released",
+        "MX": "Released",
+        "MY": "Released",
+        "NL": "Released",
+        "NR": "Released",
+        "NZ": "Released",
+        "OM": "Released",
+        "PE": "Released",
+        "PH": "Released",
+        "PL": "Released",
+        "PT": "Released",
+        "QA": "Released",
+        "RO": "Released",
+        "RS": "Released",
+        "RU": "Released",
+        "SA": "Released",
+        "SE": "Released",
+        "SG": "Released",
+        "SI": "Released",
+        "SK": "Released",
+        "TH": "Released",
+        "TR": "Released",
+        "TW": "Released",
+        "UA": "Released",
+        "US": "Released",
+        "ZA": "Released",
+        "Non_Localised": "Released"
+    }
+]
+}
