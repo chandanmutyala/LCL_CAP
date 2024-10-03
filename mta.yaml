@@ -26,6 +26,8 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: localisation_cap-db
+      - name: localisation_cap_auth
+      - name: localisation-destination
 
   - name: localisation_cap-db-deployer
     type: hdb
@@ -34,6 +36,8 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: localisation_cap-db
+      - name: localisation-destination
+      - name: localisation_cap_auth
 
 resources:
   - name: localisation_cap-db
@@ -41,3 +45,17 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: localisation-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+  - name: localisation_cap_auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: localisation
+        tenant-mode: dedicated

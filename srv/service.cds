@@ -26,6 +26,14 @@ service LocalisationService {
 
     function getUniqueValues(column: String) returns array of UniqueValue;
 
+    function getUniqueValuesRms(column: String) returns array of UniqueValue;
+
+
+    function deleteAllScopeItems() returns {
+        message: String
+    };
+    
+
 
     //function getUniqueScopeItems() returns ScopeItemType;
       // function getUniqueValues(column: String) returns array of String;

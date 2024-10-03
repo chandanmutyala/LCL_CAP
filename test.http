@@ -41,7 +41,7 @@ Content-Type: application/json
  
 {
   "customerOrProspect": "Prospect",
-  "customerName": "xCarrier",
+  "customerName": "samsung a14",
   "oppurtunityNumber": "123456",
   "priority": "High",
   "goLiveDate": "2024-09-30",
@@ -78,8 +78,8 @@ Content-Type: application/json
     "items": 
 [
     {
-        "ScopeItemID": "CY1",
-        "Description": "C AND Y DES",
+        "ScopeItemID": "nte",
+        "Description": "n AND t DES",
         "LOB": "Application Platform and Infrastructure",
         "BusinessArea": "Process Management and Integration",
         "Status": "Available",

@@ -1,0 +1,8 @@
+{
+  "xsappname": "localisation",
+  "tenant-mode": "dedicated",
+  "description": "Localisation App",
+  "scopes": [],
+  "attributes": [],
+  "role-templates": []
+}

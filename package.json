@@ -6,13 +6,20 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^8",
+    "18": "^0.0.0",
+    "@cap-js/hana": "^1",
+    "@sap-cloud-sdk/connectivity": "^3.21.0",
+    "@sap-cloud-sdk/core": "^1.54.2",
+    "@sap-cloud-sdk/http-client": "^3.21.0",
+    "@sap-cloud-sdk/resilience": "^3.21.0",
+    "@sap/cds": "^8.3.0",
     "express": "^4",
-    "@cap-js/hana": "^1"
+    "@sap/xssec": "^4"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.6",
     "@cap-js/sqlite": "^1",
+    "@sap-cloud-sdk/http-client": "^3.21.0",
     "@sap/cds-dk": "^8"
   },
   "scripts": {
@@ -21,14 +28,91 @@
   "cds": {
     "requires": {
       "db": {
-        "[production]": {
-          "kind": "hana"
-        },
-        "[development]": {
-          "kind": "sqlite"
+        "kind": "sqlite",
+        "credentials": {
+          "database": "db.sqlite"
         }
       },
-      "auth": "mocked"
-    }
+      "[production]": {
+        "db": {
+          "kind": "hana-cloud"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        },
+        "processautomation": {
+          "kind": "rest",
+          "credentials": {
+            "destination": "processautomation",
+            "forwardAuthToken": true
+          }
+        },
+        "ProcessAutomation": {
+          "kind": "rest",
+          "credentials": {
+            "destination": "ProcessAutomation",
+            "forwardAuthToken": true
+          }
+        },
+        "Northwind_AppGyver": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "Northwind_AppGyver",
+          "forwardAuthToken": true
+        }
+      }
+      },
+      "ProcessAutomationWorkflow": {
+        "kind": "rest",
+        "credentials": {
+          "url": "https://spa-api-gateway-bpi-us-prod.cfapps.us10.hana.ondemand.com",
+          "headers": {
+            "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vMzNkODZiMjR0cmlhbC5hdXRoZW50aWNhdGlvbi51czEwLmhhbmEub25kZW1hbmQuY29tL3Rva2VuX2tleXMiLCJraWQiOiJkZWZhdWx0LWp3dC1rZXktNTUyNWRjMTg1ZCIsInR5cCI6IkpXVCIsImppZCI6ICJPU29uWXVHc2xwOS9yWEhqUXRWZzdoN1RXY0NpK3V3YlhBblhlc09DUVowPSJ9.eyJqdGkiOiI2OTY4NjQ1NjE4N2E0NzM5YWFmOTQ4ZDk2Njg3NjRkNCIsImV4dF9hdHRyIjp7ImVuaGFuY2VyIjoiWFNVQUEiLCJzdWJhY2NvdW50aWQiOiI1MjBkYWFjMy0wOTM4LTRiM2MtYTdkOS1lNThmMzUzNTEzNjAiLCJ6ZG4iOiIzM2Q4NmIyNHRyaWFsIiwic2VydmljZWluc3RhbmNlaWQiOiJiZTFjODgzNi0xZmY5LTQ5MGYtOTc1OC01YmY0OTNmYjU4ODYifSwic3ViIjoic2ItYmUxYzg4MzYtMWZmOS00OTBmLTk3NTgtNWJmNDkzZmI1ODg2IWIzMjg5ODB8eHN1YWEhYjQ5MzkwIiwiYXV0aG9yaXRpZXMiOlsidWFhLnJlc291cmNlIl0sInNjb3BlIjpbInVhYS5yZXNvdXJjZSJdLCJjbGllbnRfaWQiOiJzYi1iZTFjODgzNi0xZmY5LTQ5MGYtOTc1OC01YmY0OTNmYjU4ODYhYjMyODk4MHx4c3VhYSFiNDkzOTAiLCJjaWQiOiJzYi1iZTFjODgzNi0xZmY5LTQ5MGYtOTc1OC01YmY0OTNmYjU4ODYhYjMyODk4MHx4c3VhYSFiNDkzOTAiLCJhenAiOiJzYi1iZTFjODgzNi0xZmY5LTQ5MGYtOTc1OC01YmY0OTNmYjU4ODYhYjMyODk4MHx4c3VhYSFiNDkzOTAiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwicmV2X3NpZyI6ImQwMjBjMTk5IiwiaWF0IjoxNzI3OTU2MTg0LCJleHAiOjE3Mjc5OTkzODQsImlzcyI6Imh0dHBzOi8vMzNkODZiMjR0cmlhbC5hdXRoZW50aWNhdGlvbi51czEwLmhhbmEub25kZW1hbmQuY29tL29hdXRoL3Rva2VuIiwiemlkIjoiNTIwZGFhYzMtMDkzOC00YjNjLWE3ZDktZTU4ZjM1MzUxMzYwIiwiYXVkIjpbInVhYSIsInNiLWJlMWM4ODM2LTFmZjktNDkwZi05NzU4LTViZjQ5M2ZiNTg4NiFiMzI4OTgwfHhzdWFhIWI0OTM5MCJdfQ.YO8FaQMC1zjZGG1wq42mMP-3FZzGbOtlMFiTDV585mk-vFmXXiNlhBNZici4Y_vpaCKCLaPLjqDckZry2j6wbHWyvXeu21jNpS3aVrgWpHQsbNkJmLH-UTQ6A4KpVqOzY0ejB6ndg2p0qAp7vVSglcCRgDQhWiH6HVBXyU_LQjP6R9Tq8IgK1RLqWYLkcG03WNoTqXnknF7jxYPhV94439sYP3-qjwbh-5TfHvY1ewASsNS-J-qM8LeLZcMX7IOm38dk3wHMtUgZ9zfnNrLtrfXrfrF3dKL-ziJUPknu6IcFmxglDzrW0bkXsOkuPUNt4tDrGY0CErDwoGfj5TWI9Q"
+          }
+        }
+      }
+    },
+    "[hybrid]": {
+      "db": {
+        "kind": "hana-cloud"
+      },
+      "processautomation": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "processautomation",
+          "forwardAuthToken": true
+        }
+      },
+      "Northwind_AppGyver": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "Northwind_AppGyver",
+          "forwardAuthToken": true
+        }
+      }
+    },
+    "Northwind_AppGyver": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "Northwind_AppGyver",
+          "forwardAuthToken": true
+        }
+      },
+      "ProcessAutomationWorkflow": {
+        "kind": "rest",
+        "credentials": {
+          "url": "https://spa-api-gateway-bpi-us-prod.cfapps.us10.hana.ondemand.com",
+          "headers": {
+            "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vMzNkODZiMjR0cmlhbC5hdXRoZW50aWNhdGlvbi51czEwLmhhbmEub25kZW1hbmQuY29tL3Rva2VuX2tleXMiLCJraWQiOiJkZWZhdWx0LWp3dC1rZXktNTUyNWRjMTg1ZCIsInR5cCI6IkpXVCIsImppZCI6ICJPU29uWXVHc2xwOS9yWEhqUXRWZzdoN1RXY0NpK3V3YlhBblhlc09DUVowPSJ9.eyJqdGkiOiI2OTY4NjQ1NjE4N2E0NzM5YWFmOTQ4ZDk2Njg3NjRkNCIsImV4dF9hdHRyIjp7ImVuaGFuY2VyIjoiWFNVQUEiLCJzdWJhY2NvdW50aWQiOiI1MjBkYWFjMy0wOTM4LTRiM2MtYTdkOS1lNThmMzUzNTEzNjAiLCJ6ZG4iOiIzM2Q4NmIyNHRyaWFsIiwic2VydmljZWluc3RhbmNlaWQiOiJiZTFjODgzNi0xZmY5LTQ5MGYtOTc1OC01YmY0OTNmYjU4ODYifSwic3ViIjoic2ItYmUxYzg4MzYtMWZmOS00OTBmLTk3NTgtNWJmNDkzZmI1ODg2IWIzMjg5ODB8eHN1YWEhYjQ5MzkwIiwiYXV0aG9yaXRpZXMiOlsidWFhLnJlc291cmNlIl0sInNjb3BlIjpbInVhYS5yZXNvdXJjZSJdLCJjbGllbnRfaWQiOiJzYi1iZTFjODgzNi0xZmY5LTQ5MGYtOTc1OC01YmY0OTNmYjU4ODYhYjMyODk4MHx4c3VhYSFiNDkzOTAiLCJjaWQiOiJzYi1iZTFjODgzNi0xZmY5LTQ5MGYtOTc1OC01YmY0OTNmYjU4ODYhYjMyODk4MHx4c3VhYSFiNDkzOTAiLCJhenAiOiJzYi1iZTFjODgzNi0xZmY5LTQ5MGYtOTc1OC01YmY0OTNmYjU4ODYhYjMyODk4MHx4c3VhYSFiNDkzOTAiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwicmV2X3NpZyI6ImQwMjBjMTk5IiwiaWF0IjoxNzI3OTU2MTg0LCJleHAiOjE3Mjc5OTkzODQsImlzcyI6Imh0dHBzOi8vMzNkODZiMjR0cmlhbC5hdXRoZW50aWNhdGlvbi51czEwLmhhbmEub25kZW1hbmQuY29tL29hdXRoL3Rva2VuIiwiemlkIjoiNTIwZGFhYzMtMDkzOC00YjNjLWE3ZDktZTU4ZjM1MzUxMzYwIiwiYXVkIjpbInVhYSIsInNiLWJlMWM4ODM2LTFmZjktNDkwZi05NzU4LTViZjQ5M2ZiNTg4NiFiMzI4OTgwfHhzdWFhIWI0OTM5MCJdfQ.YO8FaQMC1zjZGG1wq42mMP-3FZzGbOtlMFiTDV585mk-vFmXXiNlhBNZici4Y_vpaCKCLaPLjqDckZry2j6wbHWyvXeu21jNpS3aVrgWpHQsbNkJmLH-UTQ6A4KpVqOzY0ejB6ndg2p0qAp7vVSglcCRgDQhWiH6HVBXyU_LQjP6R9Tq8IgK1RLqWYLkcG03WNoTqXnknF7jxYPhV94439sYP3-qjwbh-5TfHvY1ewASsNS-J-qM8LeLZcMX7IOm38dk3wHMtUgZ9zfnNrLtrfXrfrF3dKL-ziJUPknu6IcFmxglDzrW0bkXsOkuPUNt4tDrGY0CErDwoGfj5TWI9Q"
+          }
+        }
+      },
+      "processautomation": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "processautomation",
+          "forwardAuthToken": true
+        }
+      }
   }
 }
