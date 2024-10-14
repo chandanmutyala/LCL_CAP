@@ -8,7 +8,6 @@ service LocalisationService {
     entity LOB               as projection on local.LOB;
     entity BusinessArea      as projection on local.BusinessArea;
     entity countries         as projection on local.countries;
-    
     action   resetAndInsertScopeItems(items : many ScopeItems);
 
     type ScopeItemType {
@@ -20,21 +19,26 @@ service LocalisationService {
     }
 
     type UniqueValue {
-        keey: String;
-        text: String;
+        keey : String;
+        text : String;
     }
 
-    function getUniqueValues(column: String) returns array of UniqueValue;
+    function getUniqueValues(column : String)    returns array of UniqueValue;
+    function getUniqueValuesRms(column : String) returns array of UniqueValue;
 
-    function getUniqueValuesRms(column: String) returns array of UniqueValue;
 
-
-    function deleteAllScopeItems() returns {
-        message: String
+    function deleteAllScopeItems()               returns {
+        message : String
     };
-    
+
+    function startWF()                           returns array of String;
 
 
-    //function getUniqueScopeItems() returns ScopeItemType;
-      // function getUniqueValues(column: String) returns array of String;
+
+    action brandGuardianStatusUpdate( autoId : Integer , brandGuardianStatus : String)    returns  String;
+    action globalServicesStatusUpdate( autoId : Integer , globalServicesStatus : String )    returns  String;
+
+
+//function getUniqueScopeItems() returns ScopeItemType;
+// function getUniqueValues(column: String) returns array of String;
 }

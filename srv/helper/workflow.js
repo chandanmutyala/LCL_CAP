@@ -65,65 +65,30 @@
 
 
 
-
-
-
-
-
-
-
-
 const cds = require('@sap/cds');
 
 const _postWorkFlow = async function (res, MissingScopeItems) {
     try {
         // Build workflow context payload
         const workflowContext = {
-            "definitionId": "us10.33d86b24trial.ctl.cTLProcess", 
-            "context": {}
+            "definitionId": "eu10.mena-afria-eu10-fw9xdn1s.localizationworkflow.cTLProcess", //"us10.33d86b24trial.ctl.cTLProcess", 
+            "context":res
         };
-        
+
         console.log(`[INFO] Workflow context payload: ${JSON.stringify(workflowContext)}`);
 
 
-       const wfAPI = await cds.connect.to('processautomation');
-       // const result = await wfAPI.send('POST', '/workflow/rest/v1/workflow-instances', workflowContext, { "Content-Type": "application/json" });
-    
-
-
-        // Connect to ProcessAutomation service defined in CAP project
-        // var workflow = await cds.connect.to('ProcessAutomationWorkflow');
-
-        // console.log(`[INFO] Connected to ProcessAutomation service. Sending request to start workflow...`);
-
-        // const response = await workflow.send({
-        //     method: 'POST',
-        //     path: `/rest/v1/workflow-instances`,
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Accept": "application/json"
-        //     },
-        //     data: {
-        //         "definitionId": definitionID,
-        //         "context": contextData
-        //     }
-        // });
+        const wfAPI = await cds.connect.to('processautomation');
 
         // Send the POST request to create a workflow instance
         const result = await wfAPI.send('POST', '/workflow/rest/v1/workflow-instances', workflowContext, {
-            headers: { 
+            headers: {
                 "Content-Type": "application/json"
             }
         });
-        console.log("Request Headers: ", req.headers);
-console.log("Workflow Context: ", workflowContext);
-
-
+        //console.log("Request Headers: ",headers);
+        console.log("Workflow Context: ", workflowContext);
         console.log(`[INFO] Workflow started successfully. Response: ${JSON.stringify(result)}`);
-        
-        // You can update your entity if needed (commented out)
-        // await UPDATE(RequestCapture).set({ wfRequestId: result.id }).where({ ID: res.ID });
-
         return result;
 
     } catch (error) {
@@ -132,6 +97,4 @@ console.log("Workflow Context: ", workflowContext);
         throw new Error(`Failed to start workflow instance: ${error.message}`);
     }
 };
-
-
 module.exports = { _postWorkFlow };

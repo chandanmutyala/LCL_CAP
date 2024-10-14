@@ -76,6 +76,7 @@ entity ScopeItems {
 
 entity MissingScopeItems {
   key autoId             : Integer;
+      id : Integer ; 
       customerOrProspect : String;
       customerName       : String;
       brandGuardianStatus : String ;

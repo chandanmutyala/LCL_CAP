@@ -27,7 +27,7 @@ modules:
     requires:
       - name: localisation_cap-db
       - name: localisation_cap_auth
-      - name: localisation-destination
+      - name: localisation_cap-destination
 
   - name: localisation_cap-db-deployer
     type: hdb
@@ -36,7 +36,7 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: localisation_cap-db
-      - name: localisation-destination
+      - name: localisation_cap-destination
       - name: localisation_cap_auth
 
 resources:
@@ -45,7 +45,7 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
-  - name: localisation-destination
+  - name: localisation_cap-destination
     type: org.cloudfoundry.managed-service
     parameters:
       service: destination

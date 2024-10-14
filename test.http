@@ -1,4 +1,25 @@
 ###
+POST http://localhost:4004/odata/v4/localisation/brandGuardianStatusUpdate
+Content-Type: application/json
+
+{
+  "autoId" : 100,
+  "brandGuardianStatus" : "Rejected"
+}
+
+
+###
+POST http://localhost:4004/odata/v4/localisation/globalServicesStatusUpdate
+Content-Type: application/json
+
+{
+  "autoId" : 100,
+  "globalServicesStatus" : "Approved"
+}
+
+
+
+###
 POST http://localhost:4004/odata/v4/localisation/MissingScopeItems
 Content-Type: application/json
  
