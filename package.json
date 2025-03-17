@@ -78,10 +78,8 @@
         }
       }
     },
-    "[hybrid]": {
-      "db": {
-        "kind": "hana-cloud"
-      },
+    "[hybrid]": 
+    {
       "processautomation": {
         "kind": "rest",
         "credentials": {

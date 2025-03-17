@@ -82,7 +82,6 @@ entity MissingScopeItems {
       brandGuardianStatus : String ;
       globalServicesStatus : String ;
       oppurtunityNumber  : String;
-      
       priority           : String; //low or medium or high
       goLiveDate         : Date;
       revenue            : String;
@@ -94,7 +93,11 @@ entity MissingScopeItems {
       Description        : String; // Adjust the length as per your requirement
       LOB                : String; // Line of Business
       BusinessArea       : String;
-
+      comment            : String;
+      version            : String;
+      FCCategory         : String;
+      industryCoverage   : String;
+      packageCoverage    : String;
 }
 
 
