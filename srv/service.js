@@ -155,7 +155,7 @@ module.exports = cds.service.impl(async function () {
                     Description: item.Description,
                     LOB: item.LOB,
                     BusinessArea: item.BusinessArea,
-                    createdBy: 'Nywald',
+                    createdBy: item.createdBy,
                     createdOn: new Date(),
                 };
 
